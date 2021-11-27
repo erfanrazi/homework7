@@ -149,4 +149,16 @@ fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 
 let celsiusTemperature = null;
 
+//position
+function showPosition(position) {
+  let latitude = position.coords.latitude;
+  let longitude = position.coords.longitude;
+  let apiKey = "baf56f4471be4826660e97693ea45c45";
+  let units = "metric";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(showTemperature);
+}
+
+navigator.geolocation.getCurrentPosition(showPosition);
+
 searchCity("New York");
